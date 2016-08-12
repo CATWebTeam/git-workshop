@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+
+{% block body %}
+  <ul class="messages">
+    {% if twittes %}
+      {% for twitte in twittes %}
+        {{ twitte.twitte_text }}
+        <small>&mdash; {{ twitte.pub_date }}</small>
+      {% endfor %}
+    {% else %}
+      <li><em>There's no message so far.</em>
+    {% endif %}
+  </ul>
+{% endblock %}

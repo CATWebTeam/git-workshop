@@ -18,7 +18,7 @@ def init_db(schema):
         setting up the database with givin schema
     '''
     db = get_db()
-    with App.open_resource(schema, mode=r) as f:
+    with App.open_resource(schema, mode='r') as f:
         db.cursor().executescript(f.read())
     db.commit()
 
@@ -42,6 +42,6 @@ def get_all_twittes():
         return all twittes from all users for the public timeline
     '''
     twittes = query_db('''
-        select * from twittes order by twittes.pub_date desc limit ?''',
+        select * from twitte order by twitte.pub_date desc limit ?''',
         App.config['PER_PAGE'])
     return twittes
