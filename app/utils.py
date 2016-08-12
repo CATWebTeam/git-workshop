@@ -1,6 +1,5 @@
 import sqlite3
 from datetime import datetime
-
 from app import App
 
 
@@ -13,7 +12,7 @@ def get_db():
 def init_db():
     db = get_db()
     with App.open_resource('./schema.sql', mode=r) as f:
-        db.cursor().executescript(f.read())twitts
+        db.cursor().executescript(f.read())
 
     db.commit()
 
