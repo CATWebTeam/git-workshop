@@ -43,5 +43,5 @@ def get_all_twittes():
     '''
     twittes = query_db('''
         select * from twitte order by twitte.pub_date desc limit ?''',
-        App.config['PER_PAGE'])
+        [App.config['PER_PAGE']])
     return twittes
