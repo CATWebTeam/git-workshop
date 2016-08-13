@@ -29,11 +29,8 @@ def register():
             error = 'The username is already taken'
         else:
             db = get_db()
-            db.execute('''insert into user (
-              username, email, pw_hash) values (?, ?, ?)''',
-              [request.form['username'], request.form['email'],
-               generate_password_hash(request.form['password'])])
+            register_user(request.form['username'],request.form['email'],request.form['password'])
             db.commit()
             flash('You were successfully registered and can login now')
             return redirect(url_for('login'))
-return render_template('register.html', error=error)
+return render_template('signup.html', error=error)
