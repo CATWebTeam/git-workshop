@@ -1,5 +1,5 @@
-from flask import Flask, request, session, url_for, redirect, \
-render_template, abort, g, flash, _app_ctx_stack
+from flask import Flask, request, url_for, redirect, \
+render_template, flash
 
 from app import App
 from app import db_utils
@@ -20,8 +20,6 @@ def private_timeline(name):
 @App.route('/register', methods=['GET', 'POST']) # akef
 def register():
     """Registers the user."""
-    #if g.user: not now
-    #    return redirect(url_for('timeline'))
     error = None
     if request.method == 'POST':
         if not request.form['username']:
