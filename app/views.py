@@ -9,7 +9,7 @@ from app import config
 def public_timeline():
     return render_template('public_timeline.html', flashes=db_utils.get_all_twittes())
 
-@app.route('/register', methods=['GET', 'POST']) # akef
+@App.route('/register', methods=['GET', 'POST']) # akef
 def register():
     """Registers the user."""
     if g.user:
@@ -31,4 +31,4 @@ def register():
             db_utils.register_user(request.form['username'],request.form['email'],request.form['password'])
             flash('You were successfully registered and can login now')
             return redirect(url_for('login'))
-return render_template('signup.html', error=error)
+        return render_template('signup.html', error=error)
