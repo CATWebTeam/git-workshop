@@ -9,6 +9,6 @@ from app import config
 def public_timeline():
     return render_template('public_timeline.html', flashes=db_utils.get_all_twittes())
 
-@app.route('/<name>')
+@App.route('/<name>')
 def private_timeline(name):
     return render_template('public_timeline.html', flashes=db_utils.get_user_timeline_twittes(name))
