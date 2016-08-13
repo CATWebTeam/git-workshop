@@ -28,9 +28,7 @@ def register():
         elif get_user_id(request.form['username']) is not None:
             error = 'The username is already taken'
         else:
-            db = get_db()
-            register_user(request.form['username'],request.form['email'],request.form['password'])
-            db.commit()
+            db_utils.register_user(request.form['username'],request.form['email'],request.form['password'])
             flash('You were successfully registered and can login now')
             return redirect(url_for('login'))
 return render_template('signup.html', error=error)
