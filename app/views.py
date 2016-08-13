@@ -1,5 +1,5 @@
-from flask import Flask
-from flask import render_template
+from flask import Flask, request, session, url_for, redirect, \
+render_template, abort, g, flash, _app_ctx_stack
 
 from app import App
 from app import db_utils
@@ -12,8 +12,8 @@ def public_timeline():
 @App.route('/register', methods=['GET', 'POST']) # akef
 def register():
     """Registers the user."""
-    if g.user:
-        return redirect(url_for('timeline'))
+    #if g.user: not now
+    #    return redirect(url_for('timeline'))
     error = None
     if request.method == 'POST':
         if not request.form['username']:
@@ -25,10 +25,10 @@ def register():
             error = 'You have to enter a password'
         elif request.form['password'] != request.form['password2']:
             error = 'The two passwords do not match'
-        elif get_user_id(request.form['username']) is not None:
+        elif db_utils.get_user_id(request.form['username']) is not None:
             error = 'The username is already taken'
         else:
             db_utils.register_user(request.form['username'],request.form['email'],request.form['password'])
             flash('You were successfully registered and can login now')
-            return redirect(url_for('login'))
-        return render_template('signup.html', error=error)
+            return redirect(url_for('public_timeline'))
+    return render_template('signup.html', error=error)
