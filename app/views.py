@@ -16,6 +16,10 @@ def private_timeline(name):
     twittes =db_utils.get_user_timeline_twittes(name)
     return render_template('public_timeline.html', twittes = twittes )
 
+@App.route('/users')
+def list_of_users():
+	list_users = db_utils.get_all_users()
+	retrun render_template('list_of_users.html', list = list_users)
 
 @App.route('/register', methods=['GET', 'POST']) # akef
 def register():
