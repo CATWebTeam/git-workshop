@@ -9,7 +9,7 @@ def login():
         else:
             session['logged_in'] = True
             flash('Yo were logged in')
-            return redirect(url_for('show_entries'))
+            return redirect(url_for('public_timeline'))
     return render_template('login.html', error=error)
 
 @app.route('/logout')
