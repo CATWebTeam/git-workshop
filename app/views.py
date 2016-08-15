@@ -1,7 +1,7 @@
-@app.route('login', methods=['GET', 'POST'])
+@App.route('/login', methods=['GET', 'POST'])
 def login():
     erorr = None
-    if request.method == 'POST'
+    if request.method == 'POST':
         if request.form['username'] != app.config['USERNAME']:
             erorr = 'Invalid username'
         elif request.form['password'] != app.config['PASSWORD']:
@@ -12,7 +12,7 @@ def login():
             return redirect(url_for('public_timeline'))
     return render_template('login.html', error=error)
 
-@app.route('/logout')
+@App.route('/logout')
 def logout():
     session.pop('logged_in', None)
     flash('You were logged out')
